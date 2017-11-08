@@ -17,6 +17,8 @@ public class Register extends AppCompatActivity {
         etname = (EditText) findViewById(R.id.name);
         etage = (EditText) findViewById(R.id.age);
     }
+    
+    //Method invoked when Add Button is clicked in Register Activity
     public void OnAdd(View view){
         String name = etname.getText().toString();
         String age = etage.getText().toString();
@@ -24,6 +26,8 @@ public class Register extends AppCompatActivity {
         BackgroundWorker backgroundworker = new BackgroundWorker(this);
         backgroundworker.execute(type,name,age);
     }
+    
+    //Methos invoked when Logout Button is clicked in Register Activity
     public void Logout(View view){
         Intent i =new Intent(getApplicationContext(),Login.class);
         startActivity(i);
