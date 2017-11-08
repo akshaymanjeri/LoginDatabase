@@ -18,7 +18,8 @@ public class Login extends ActionBarActivity {
         UsernameEt = (EditText)findViewById(R.id.etUsername);
         PasswordEt = (EditText)findViewById(R.id.etPassword);
     }
-
+    
+    //Method invoked when Login Button is clicked in Login Activity
     public void Login(View view) {
         String username = UsernameEt.getText().toString();
         String password = PasswordEt.getText().toString();
