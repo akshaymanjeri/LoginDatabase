@@ -29,6 +29,7 @@ package com.akshay.login;
         import java.net.URL;
         import java.net.URLEncoder;
 
+//For performing tasks in the background
 public class BackgroundWorker extends AsyncTask<String,Void,String> {
     Context context;
     AlertDialog alertDialog;
@@ -39,15 +40,16 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
     @Override
     protected String doInBackground(String... params) {
         String type = params[0];
-        String login_url = "https://bengaluruhudugaru.000webhostapp.com/login.php";
-        String reg_url= "https://bengaluruhudugaru.000webhostapp.com/register.php";
+        String login_url = "Enter your Login URL";
+        String reg_url= "Enter your Register URL";
+        
+        //Posting Username and Password details
         if(type.equals("login")) {
             try {
                 String username = params[1];
                 String password = params[2];
                 URL url = new URL(login_url);
                 HttpURLConnection httpURLConnection = (HttpURLConnection)url.openConnection();
-                //httpURLConnection.connect();
                 httpURLConnection.setRequestMethod("POST");
                 httpURLConnection.setDoOutput(true);
                 httpURLConnection.setDoInput(true);
@@ -75,6 +77,8 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
                 e.printStackTrace();
             }
         }
+            
+        //Posting Name and Age details
         else if(type.equals("add")){
             try {
                 String name = params[1];
@@ -117,6 +121,7 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
     @Override
     protected void onPostExecute(String result) {
         if(result.equals("login success !!!!! Welcome user")) {
+            //Alert when Login is successful
             alertDialog = new AlertDialog.Builder(context).create();
             alertDialog.setTitle("Login Status");   
             alertDialog.setMessage(result);
@@ -125,12 +130,14 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
             context.startActivity(i);
         }
         else if(result.equals("login not success")){
+            //Alert when Login is not successful
             alertDialog = new AlertDialog.Builder(context).create();
             alertDialog.setTitle("Login Status");
             alertDialog.setMessage(result);
             alertDialog.show();
         }
         else{
+            //Alert when Registration is successful
             alertDialog = new AlertDialog.Builder(context).create();
             alertDialog.setTitle("Status");
             alertDialog.setMessage(result);
